@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <script type="text/javascript" src="http://code.angularjs.org/1.1.0/angular.min.js"></script>
+  <script type="text/javascript" src="http://www.google.com/jsapi?ext.js"></script>
+  <script type='text/javascript'>
+  
+    var app = angular.module('myApp', []);
+    app.controller('MyCtrl', function($scope) {
+      $scope.name = "GoogleChart"
+    });
+    app.directive('chart', function() {
+        return {
+          restrict: 'A',
+          link: function($scope, $elm, $attr) {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'SocialPlatform');
+            data.addColumn('number', 'Popularity');
+            data.addRows([
+              ['Facebook', 35],
+              ['Google+' , 17],
+              ['LinkedIn', 41], 
+              ['Google Ads', 63],
+              ['Quora', 28]
+            ]);
+            var options = {'title':'Popularity of customer posts across different platform',
+                       'width':400,
+                       'height':300};
+            var chart = new google.visualization.PieChart($elm[0]);
+            chart.draw(data, options);
+          }
+        }
+    });
+    
+    google.setOnLoadCallback(function() {
+        angular.bootstrap(document.body, ['myApp']);
+    });
+    google.load('visualization', '1', {packages: ['corechart']});
+    
+  </script>
+  <body> 
+    <div ng-controller='MyCtrl'>
+      <div chart></div>
+    </div>    
+  </body>
+  
+</html>

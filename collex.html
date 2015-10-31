@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Percent population</title>
+	<style>
+		div#myCont {
+		    width: 80%;
+		    height: 40px;
+		    border: 1px solid #9b9b9b;
+		    margin: 15px auto;
+		    box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+		}
+		.left {
+			background: #ff0000;
+			float: left;
+			height: 100%;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+		  	<div class="input-group" style="margin-top:10px;">
+			    <input type="text" class="form-control" placeholder="Enter percentage" id="getPer">
+			    <span class="input-group-btn">
+			        <button class="btn btn-IR" type="button" id="btn">Apply</button>
+			    </span>
+			</div><!-- input-group -->
+		</div>
+
+		<div id="myCont">
+			<div class="left"></div>
+			<div class="right"></div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function() {
+			$('#btn').on('click',function(event) {
+				var mywidth=$('#getPer').val();
+				$('.left').css('width', mywidth+'%');
+			});
+		});
+	</script>
+</body>
+</html>
